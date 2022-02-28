@@ -1,4 +1,4 @@
-package com.nextbasecrm.tests;
+package com.nextbasecrm.tests.igor;
 
 import com.google.common.base.Verify;
 import com.nextbasecrm.utilities.CRM_Utilities;
