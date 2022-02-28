@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -51,6 +52,11 @@ public class US_10_ErrorMessage {
         String expectedErrorMessage = "The task name is not specified.";
         String actualErrorMessage = driver.findElement(By.xpath("//div[@class='task-message-label error']")).getText();
         Assert.assertTrue(expectedErrorMessage.equals(actualErrorMessage));
+
+    }
+
+    @AfterMethod
+    public void tearDown() {
         driver.close();
     }
 }
