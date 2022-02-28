@@ -19,7 +19,6 @@
             <artifactId>webdrivermanager</artifactId>
             <version>5.0.3</version>
         </dependency>
-
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
@@ -32,7 +31,5 @@
             <version>7.5</version>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
-
 </project>
