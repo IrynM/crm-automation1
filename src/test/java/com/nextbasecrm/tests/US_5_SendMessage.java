@@ -1,11 +1,13 @@
 package com.nextbasecrm.tests;
 
+import com.github.javafaker.Faker;
 import com.nextbasecrm.utilities.CRM_Utilities;
 import com.nextbasecrm.utilities.WebDriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -23,9 +25,15 @@ public class US_5_SendMessage {
         driver.get("https://login2.nextbasecrm.com");
         CRM_Utilities.crm_login(driver, "hr4@cydeo.com", "UserUser");
     }
+    @AfterMethod
+    public void tearDown(){
+        driver.close();
+    }
 
-    @Test(priority = 1)
+    @Test()
     public void crm_sendMessage() {
+        Faker name1= new Faker();
+        String random = name1.name().name();
         // Click to Message Tab
         WebElement messageBox = driver.findElement(By.xpath("//*[@id='microoPostFormLHE_blogPostForm']"));
         messageBox.click();
@@ -34,7 +42,7 @@ public class US_5_SendMessage {
         driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@class='bx-editor-iframe']")));
 
         WebElement iframeMessage = driver.findElement(By.xpath("//html[1]//body[@contenteditable='true']"));
-        iframeMessage.sendKeys("Hello my group");
+        iframeMessage.sendKeys(random);
 
         //switch back to "main HTML"
         driver.switchTo().parentFrame();
@@ -42,9 +50,9 @@ public class US_5_SendMessage {
         WebElement sendButton = driver.findElement(By.xpath("//div[@id='feed-add-buttons-blockblogPostForm']/button[1]"));
         sendButton.click();
 
-        Assert.assertTrue(driver.findElement(By.xpath("//div[.='Hello my group']")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.xpath("//div[.='"+random+"']")).isDisplayed());
     }
-    @Test(priority = 2)
+    @Test()
     public void crm_warningMessage_Test() {
 
 
