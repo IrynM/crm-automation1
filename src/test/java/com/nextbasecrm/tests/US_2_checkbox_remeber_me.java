@@ -29,24 +29,29 @@ public class US_2_checkbox_remeber_me {
     @Test
     public void checkBoxLabel() throws InterruptedException {
         int index = 1;
+        //locate checkbox element
         WebElement checkBox = driver.findElement(By.xpath("//input[@id='USER_REMEMBER']"));
 
+        //check if checkbox is displayed
         Assert.assertTrue(checkBox.isDisplayed());
         System.out.println(index++ +".CheckBox is displayed: " + checkBox.isDisplayed());
 
         Thread.sleep(1000);
+        //click to check checkbox
         checkBox.click();
 
         //Verify user can check the remember me checkbox
         System.out.println(index++ +".User can check checkbox: " + checkBox.isSelected());
         Assert.assertTrue(checkBox.isSelected());
 
+        //locate and verify if label "Remember me on this computer" is displayed
         WebElement labeRemeberMe = driver.findElement(By.xpath("//label[@class='login-item-checkbox-label']"));
         Assert.assertTrue(labeRemeberMe.isDisplayed());
 
         String expectedMessageDisplayed = "Remember me on this computer";
         String actualMessageDisplayed = labeRemeberMe.getText();
 
+        //compare if acutal label message is displayed and matching with expected
         Assert.assertTrue(labeRemeberMe.isDisplayed());
         System.out.println(index++ +".Message Remember me on this computer is diplayed: " + labeRemeberMe.isDisplayed());
         System.out.println(index++ +".Expected message matching with actual: " + expectedMessageDisplayed.equals(actualMessageDisplayed));
