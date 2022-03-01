@@ -11,6 +11,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
@@ -101,4 +102,47 @@ public class US_1_login {
         String expectedErrorMessage = "Incorrect username or password";
         Assert.assertEquals(actualErrorMessage, expectedErrorMessage);
     }
+
+
+    @Test (dataProvider ="credentials")
+    public void login_with_valid_credentials_with_login_btn1(String userName, String password){
+        driver.findElement(By.xpath("//input[@name='USER_LOGIN']")).sendKeys(userName);
+        driver.findElement(By.xpath("//input[@type='password']")).sendKeys(password);
+        driver.findElement(By.xpath("//input[@class='login-btn']")).click();
+        String expectedTitle="Portal";
+        String actualTitle=driver.getTitle();
+        Assert.assertEquals(actualTitle, expectedTitle);
+    }
+
+    @Test (dataProvider ="credentials")
+    public void login_with_invalid_password(String userName, String password){
+        driver.findElement(By.xpath("//input[@name='USER_LOGIN']")).sendKeys(userName);
+        driver.findElement(By.xpath("//input[@type='password']")).sendKeys("123");
+        driver.findElement(By.xpath("//input[@class='login-btn']")).click();
+
+        String actualErrorMessage = driver.findElement(By.xpath("//div[@class='errortext']")).getText();
+        String expectedErrorMessage = "Incorrect username or password";
+        Assert.assertEquals(actualErrorMessage, expectedErrorMessage);
+    }
+
+
+
+
+    @DataProvider(name="credentials")
+    public Object[][] credentials1(){
+        return new Object[][]{  {"hr4@cydeo.com", "UserUser"},
+                {"hr5@cydeo.com", "UserUser"},
+                {"hr6@cydeo.com", "UserUser"},
+                {"helpdesk4@cydeo.com", "UserUser"},
+                {"helpdesk5@cydeo.com", "UserUser"},
+                {"helpdesk6@cydeo.com", "UserUser"},
+                {"marketing4@cydeo.com", "UserUser"},
+                {"marketing5@cydeo.com", "UserUser"},
+                {"marketing6@cydeo.com", "UserUser"}
+                };
+    }
+
+
+
+
 }
