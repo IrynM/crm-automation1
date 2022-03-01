@@ -39,7 +39,7 @@ public class US_4_MyProfile_options {
         WebElement profileBtn = driver.findElement(By.xpath("//span[@id='user-name']"));
         profileBtn.click();
 
-        List<WebElement> profileOptionsList = driver.findElements(By.xpath("//div[@class='menu-popup-items']/div/*"));
+        List<WebElement> profileOptionsList = driver.findElements(By.xpath("//div[@class='menu-popup-items']/*"));
 
         List<String> expectedOptionsList = new ArrayList<>(Arrays.asList("My Profile","Edit Profile Settings","Themes",
                 "Configure notifications", "Logout"));
