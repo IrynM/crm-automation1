@@ -2,6 +2,7 @@ package com.nextbasecrm.tests;
 
 import com.github.javafaker.Faker;
 import com.nextbasecrm.utilities.CRM_Utilities;
+import com.nextbasecrm.utilities.ConfigurationReader;
 import com.nextbasecrm.utilities.WebDriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -11,6 +12,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.lang.module.Configuration;
 import java.util.concurrent.TimeUnit;
 
 public class US_5_SendMessage {
@@ -22,8 +24,10 @@ public class US_5_SendMessage {
         driver = WebDriverFactory.getDriver("chrome");
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        driver.get("https://login2.nextbasecrm.com");
-        CRM_Utilities.crm_login(driver, "hr4@cydeo.com", "UserUser");
+        driver.get(ConfigurationReader.getProperty("env"));
+        CRM_Utilities.crm_login(driver, ConfigurationReader.getProperty("username"), "password");
+
+
     }
     @AfterMethod
     public void tearDown(){
