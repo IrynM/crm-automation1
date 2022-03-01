@@ -14,7 +14,7 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-public class US_10_popUpMessageSuccessTask {
+public class US_11_popUpMessageSuccessTask {
     public WebDriver driver;
 
     @BeforeMethod

@@ -14,7 +14,7 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-public class US_10_ErrorMessage {
+public class US_11_ErrorMessage {
     public WebDriver driver;
 
     @BeforeTest
