@@ -12,7 +12,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.lang.module.Configuration;
+
 import java.util.concurrent.TimeUnit;
 
 public class US_5_SendMessage {
